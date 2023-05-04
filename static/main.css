@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    background-color: #03ac95;
+}
+
+header {
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    background-color: #03ac95;
+}
+
+nav {
+    width: auto;
+    text-align: center;
+}
+
+aside {
+    float: right;
+    width: 32%;
+    min-height: 16em;
+    padding: 1%;
+    background-color: #006f83;
+    text-align: center;
+}
+
+main {
+    width: auto;
+    min-height: auto;
+    /* min-height: 1000%; */
+    padding: 1%;
+    background-color: #006f83;
+}
+
+aside section {
+    padding: 1em;
+    margin: 1em;
+    background-color: rgb(206, 206, 206);
+    border-radius: 30px;
+}
+
+main section {
+    padding: 1em;
+    margin: 1em;
+    background-color: rgb(206, 206, 206);
+    border-radius: 3em;
+}
+
+h1 {
+    margin: 10px;
+    text-decoration: none;
+}
+
+#main_title {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px  solid cyan ;
+    background-color: orange;
+    width: 600px;
+    
+}
+
+p {
+    background-color: white;
+    color: black;
+}
+
+a {
+    transition: 1s;
+    text-decoration: none;
+    color: rebeccapurple;
+    font-size: 2em;
+}
+
+
+main article {
+    padding: 1em;
+    margin: auto;
+    margin-top: 1em;
+    background-color: #1C6673;
+    border-radius: 50px;
+    width: 750px;
+    height: 753px;
+    color: white;
+    font-weight: 200px;
+    text-align: center;
+    font-family: Verdana, sans-serif;
+}
+
+footer{
+    bottom: 0;
+    border: 2px solid darkblue;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+#git {
+    color: white;
+    text-align: center;
+}
+
+#git:hover {
+    background-color: green;
+}
+
+.appli
+{
+    font : bold 20px Batang, arial, serif;
+    list-style-type : none;
+    padding-bottom : 80px; /* à modifier suivant la taille de la police ET de la hauteur de l'onglet dans #onglets li */
+    display: inline-block;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.appli li
+{
+    border:2px solid white;
+    border-radius: 4%;
+    float : left;
+    height : 75px; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
+    margin : 6px 10px;
+}
+
