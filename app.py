@@ -3,7 +3,7 @@ from flask import url_for
 from flask import render_template
 from flask import request
 
-from python.akinator import Akinator as Akinator_class, akinator_guess
+from akinator.async_aki import Akinator
 import asyncio
 
 app = Flask(__name__) # Création de l’application web avec Flask
@@ -18,7 +18,7 @@ loop = asyncio.get_event_loop()  # Crée une instance de l'événement loop
 @app.route('/akinator.html/', methods=['GET', 'POST'])
 def akinator_route():
     if 'akinator_game' not in session:
-        session['akinator_game'] = Akinator_class()
+        session['akinator_game'] = Akinator()
 
     akinator = session['akinator_game']
 
@@ -26,7 +26,7 @@ def akinator_route():
       button_value = request.form['button']
       if button_value == "Nouvelle partie":
         akinator.close()
-        akinator_guess = loop.run_until_complete(session['akinator_game'].start_game(language="fr"))
+        akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
 
       else:
          akinator_guess = loop.run_until_complete(akinator.answer(button_value))
@@ -39,5 +39,5 @@ def akinator_route():
             except:
                   akinator_guess = "ça bug"
     else:
-      akinator_guess = loop.run_until_complete(session['akinator_game'].start_game(language="fr"))
+      akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
     return render_template('akinator.html', button_value=akinator_guess)
