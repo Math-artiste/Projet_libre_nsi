@@ -3,9 +3,11 @@ from flask import url_for
 from flask import render_template
 from flask import request
 
-from akinator.async_aki import Akinator
 import asyncio
 
+from akinator.async_aki import Akinator
+from python.rap_citation import get_citation, ARTISTS
+from random import shuffle
 app = Flask(__name__) # Création de l’application web avec Flask
 
 @app.route('/')
@@ -41,3 +43,37 @@ def akinator_route():
     else:
       akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
     return render_template('akinator.html', button_value=akinator_guess)
+
+artist = selectionned_artist = "laylow"
+citation = ""
+good_answer = ""
+answers = ""
+@app.route('/rap_citation.html', methods=['GET', 'POST'])
+def rap_citation_route():
+    global artist, selectionned_artist, citation, good_answer, answers
+
+    if request.method == "GET":
+        print("GET ICI")
+        citation, answers = get_citation(selectionned_artist)
+        good_answer = answers[0]
+    else:
+        selectionned_artist = request.form["artist"].replace(" ","")
+        print(selectionned_artist, artist)
+        if selectionned_artist != artist:
+          artist = selectionned_artist
+          citation, answers = get_citation(selectionned_artist)
+          good_answer = answers[0]
+        else:
+            selectionned_answer = request.form["button"]
+            print(selectionned_answer)
+            print(selectionned_artist)
+            print(good_answer)
+            if selectionned_answer != good_answer.replace(" ","_"):
+                print('faux')
+            else:
+              citation, answers = get_citation(selectionned_artist)
+              good_answer = answers[0]
+                
+    shuffle(answers)
+    return render_template('rap_citation.html', citation=citation, answers = answers, artist_list = ARTISTS,
+                            selectionned_artist = selectionned_artist)
