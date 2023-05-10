@@ -1,0 +1,55 @@
+body {
+    background-color: #0ED0A1;
+}
+
+#main {
+    position:absolute;
+}
+
+/* CELUI QUI TOUCHE A CA JE L'EXPLOSE */
+
+#lg_bande_1 {
+    position: relative;
+    transform: rotate(0deg);
+    width  : 20px;
+    height : 72px;
+    background : white;
+    margin-left: 707px;
+    margin-top: 306px;
+}
+#lg_bande_2 {
+    transform: rotate(0deg);
+    width  : 20px;
+    height : 73px;
+    background : white;
+    margin-left: 554px;
+    margin-top: -67px;
+}
+#pt_bande_1 {
+    transform: rotate(0deg);
+    width  : 20px;
+    height : 60px;
+    background : white;
+    margin-left: 655px;
+    margin-top: -61px;
+}
+#pt_bande_2 {
+    transform: rotate(0deg);
+    width  : 20px;
+    height : 60px;
+    background : white;
+    margin-left: 605px;
+    margin-top: -64px;
+}
+
+/* FIN DE L'AVERTISSEMENT */
+
+select {
+    margin-left: 20px;
+    margin-top: 30px;   
+    display: inline-flex;    
+}
+
+input {
+    margin-left: 20px;
+}

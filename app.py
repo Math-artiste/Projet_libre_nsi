@@ -15,6 +15,10 @@ app = Flask(__name__) # Création de l’application web avec Flask
 def index(): # Fonction que Flask exécutera si il reçoit une requête ciblant la route par défaut
    return render_template('main.html')
 
+@app.route('/quizz_resistance', methods=['GET', 'POST'])
+def quizz_ohm_route() :
+  return render_template('quizz_resistance.html', first_color="red", second_color="green", third_color="black", fourth_color="grey")
+
 session = {}
 loop = asyncio.get_event_loop()  # Crée une instance de l'événement loop
 @app.route('/akinator.html/', methods=['GET', 'POST'])
@@ -77,3 +81,6 @@ def rap_citation_route():
     shuffle(answers)
     return render_template('rap_citation.html', citation=citation, answers = answers, artist_list = ARTISTS,
                             selectionned_artist = selectionned_artist)
+
+
+
