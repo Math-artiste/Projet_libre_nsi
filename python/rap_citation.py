@@ -63,7 +63,8 @@ def get_citation(artist):
     1 citation,
     [1 good answer, 3 bad answers]
     """
-    artist = artist.lower()
+    artist = artist.lower().replace(" ","-")
+    print(artist)
     if not path.exists(path.normpath(f'csv_files//rap_citation//{artist}.csv')):
         if make_request(artist) != 1:
             if make_request(artist="les-meilleures-phrases-de-"+artist) != 1:

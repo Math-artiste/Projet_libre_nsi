@@ -27,14 +27,14 @@ def akinator_route():
     if request.method == 'POST':
       button_value = request.form['button']
       if button_value == "Nouvelle partie":
-        akinator.close()
+        loop.run_until_complete(akinator.close())
         akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
 
       else:
          akinator_guess = loop.run_until_complete(akinator.answer(button_value))
 
          if akinator.progression >= 80:
-            akinator.close()
+            loop.run_until_complete(akinator.close())
             loop.run_until_complete(akinator.win())
             try:
                   akinator_guess = f"C'est {akinator.first_guess['name']} ({akinator.first_guess['description']})!"
@@ -42,9 +42,9 @@ def akinator_route():
                   akinator_guess = "ça bug"
     else:
       akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
-    return render_template('akinator.html', button_value=akinator_guess)
+    return render_template('akinator.html', akinator_guess=akinator_guess)
 
-artist = selectionned_artist = "laylow"
+artist = selectionned_artist = "Laylow"
 citation = ""
 good_answer = ""
 answers = ""
@@ -53,27 +53,27 @@ def rap_citation_route():
     global artist, selectionned_artist, citation, good_answer, answers
 
     if request.method == "GET":
-        print("GET ICI")
         citation, answers = get_citation(selectionned_artist)
         good_answer = answers[0]
     else:
-        selectionned_artist = request.form["artist"].replace(" ","")
+        selectionned_artist = str(request.form["artist"]).replace(" ","-").lower()
+
+        while selectionned_artist[-1] == "-":
+           selectionned_artist = selectionned_artist[:-1]
         print(selectionned_artist, artist)
         if selectionned_artist != artist:
           artist = selectionned_artist
           citation, answers = get_citation(selectionned_artist)
           good_answer = answers[0]
         else:
-            selectionned_answer = request.form["button"]
+            selectionned_answer = str(request.form["button"]).lower()
             print(selectionned_answer)
-            print(selectionned_artist)
-            print(good_answer)
-            if selectionned_answer != good_answer.replace(" ","_"):
+            print(good_answer.lower().replace(" ",""))
+            if selectionned_answer != good_answer.lower().replace(" ",""):
                 print('faux')
             else:
               citation, answers = get_citation(selectionned_artist)
               good_answer = answers[0]
-                
     shuffle(answers)
     return render_template('rap_citation.html', citation=citation, answers = answers, artist_list = ARTISTS,
                             selectionned_artist = selectionned_artist)

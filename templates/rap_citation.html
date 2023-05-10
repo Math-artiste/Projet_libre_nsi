@@ -20,7 +20,7 @@
         <form method="POST" >
             <select name="artist">
                 {% for artist in artist_list %}
-                {% if artist == selectionned_artist %}
+                {% if artist.lower().replace(" ","-") == selectionned_artist %}
                 <option selected value="{{ artist }}">{{ artist }}</option>
                 {% else %}
                 <option value="{{ artist }}">{{ artist }}</option>
@@ -31,7 +31,7 @@
         </form>
         <form method="post">
             {% for answer in answers %}
-            <button type="submit" name="button" value={{answer.replace(' ','_') }}>{{answer}}</button>
+            <button type="submit" name="button" value={{answer.replace(' ','') }}>{{answer}}</button>
             {% endfor %}
             <input type="hidden" name="artist" value="{{selectionned_artist}} ">
 
