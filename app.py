@@ -17,7 +17,9 @@ def index(): # Fonction que Flask exécutera si il reçoit une requête ciblant 
 
 @app.route('/quizz_resistance', methods=['GET', 'POST'])
 def quizz_ohm_route() :
-  return render_template('quizz_resistance.html', first_color="red", second_color="green", third_color="black", fourth_color="grey")
+  import csv
+  color=[]
+  return render_template('quizz_resistance.html', first_color="green", second_color="blue", third_color="gold", fourth_color="grey")
 
 session = {}
 loop = asyncio.get_event_loop()  # Crée une instance de l'événement loop
