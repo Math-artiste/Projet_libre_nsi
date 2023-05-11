@@ -18,9 +18,12 @@
     {{akinator_guess}}
     </section>
     <form method="post">
-      {% for i in range(len(akinator.buttons)) %}
-        <button type="submit" name="button" value={{akinator.buttons['value'][i]}}>{{akinator.buttons['content'][i]}}</button>
-      {% endfor %}
+        <button type="submit" name="button" value="n">Non</button>
+        <button type="submit" name="button" value="pn">Probablement pas</button>
+        <button type="submit" name="button" value="idk">Je ne sais aps</button>
+        <button type="submit" name="button" value="p">Probablement</button>
+        <button type="submit" name="button" value="y">Oui</button>
+        <button type="submit" name="button" value="Nouvelle partie">Nouvelle partie</button>
     </form>
   </main>
   <footer>

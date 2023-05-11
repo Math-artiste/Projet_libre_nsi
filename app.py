@@ -8,6 +8,7 @@ import asyncio
 from akinator.async_aki import Akinator
 from python.rap_citation import get_citation, ARTISTS
 from random import shuffle
+from python.button import Quizz
 app = Flask(__name__) # Création de l’application web avec Flask
 
 @app.route('/')
@@ -16,71 +17,87 @@ def index(): # Fonction que Flask exécutera si il reçoit une requête ciblant 
    return render_template('main.html')
 
 @app.route('/quizz_resistance', methods=['GET', 'POST'])
-def quizz_ohm_route() :
+def quizz_ohm_route():
   return render_template('quizz_resistance.html', first_color="red", second_color="green", third_color="black", fourth_color="grey")
 
-session = {}
+session = False
+akinator_class = Quizz()
+# akinator_class.create_buttons(buttons_content=["Non", "Probablement pas", "Je ne sais pas", "Probablement", "Oui"],
+#                        buttons_value=["n","pn","idk","p","y"])
 loop = asyncio.get_event_loop()  # Crée une instance de l'événement loop
 @app.route('/akinator.html/', methods=['GET', 'POST'])
 def akinator_route():
-    if 'akinator_game' not in session:
-        session['akinator_game'] = Akinator()
-
-    akinator = session['akinator_game']
+    global akinator
+    if session != True:
+        session = True
+        akinator_class.akinator_game= Akinator()
+    akinator_class.akinator_game
+    akinator = akinator_class.akinator_game
 
     if request.method == 'POST':
       button_value = request.form['button']
+
       if button_value == "Nouvelle partie":
         loop.run_until_complete(akinator.close())
-        akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
+        akinator_class.question = loop.run_until_complete(akinator.start_game(language="fr"))
 
       else:
-         akinator_guess = loop.run_until_complete(akinator.answer(button_value))
+         akinator_class.question = loop.run_until_complete(akinator.answer(button_value))
 
          if akinator.progression >= 80:
             loop.run_until_complete(akinator.close())
             loop.run_until_complete(akinator.win())
             try:
-                  akinator_guess = f"C'est {akinator.first_guess['name']} ({akinator.first_guess['description']})!"
+                  akinator_class.question = f"C'est {akinator.first_guess['name']} ({akinator.first_guess['description']})!"
             except:
-                  akinator_guess = "ça bug"
+                  akinator_class.question = "ça bug"
     else:
-      akinator_guess = loop.run_until_complete(akinator.start_game(language="fr"))
-    return render_template('akinator.html', akinator_guess=akinator_guess)
+      akinator_class.question = loop.run_until_complete(akinator.start_game(language="fr"))
+    return render_template('akinator.html', akinator = akinator_class)
 
-artist = selectionned_artist = "Laylow"
-citation = ""
-good_answer = ""
-answers = ""
+C_class = Quizz()
+C_class.previous_artist ="Alpha Wann"
+C_class.selectionned_artist ="Alpha Wann"
+C_class.citation =""
+C_class.good_answer =""
+C_class.answers =[]
 @app.route('/rap_citation.html', methods=['GET', 'POST'])
-def rap_citation_route():
-    global artist, selectionned_artist, citation, good_answer, answers
+def citation_route():
+    global C_class
 
     if request.method == "GET":
-        citation, answers = get_citation(selectionned_artist)
-        good_answer = answers[0]
+        C_class.citation, C_class.answers = get_citation(C_class.selectionned_artist)
+        C_class.good_answer = C_class.answers[0]
     else:
-        selectionned_artist = str(request.form["artist"]).replace(" ","-").lower()
+        try:
+           C_class.selectionned_artist = str(request.form["artist"]).replace(" ","-").lower()
+        except:
+           pass
+        while C_class.selectionned_artist[-1] == "-":
+           C_class.selectionned_artist = C_class.selectionned_artist[:-1]
 
-        while selectionned_artist[-1] == "-":
-           selectionned_artist = selectionned_artist[:-1]
-        print(selectionned_artist, artist)
-        if selectionned_artist != artist:
-          artist = selectionned_artist
-          citation, answers = get_citation(selectionned_artist)
-          good_answer = answers[0]
+        if C_class.selectionned_artist != C_class.previous_artist:
+          C_class.previous_artist = C_class.selectionned_artist
+          C_class.citation, C_class.answers = get_citation(C_class.selectionned_artist)
+          C_class.good_answer = C_class.answers[0]
+          shuffle(C_class.answers)
+
         else:
             selectionned_answer = str(request.form["button"]).lower()
             print(selectionned_answer)
-            print(good_answer.lower().replace(" ",""))
-            if selectionned_answer != good_answer.lower().replace(" ",""):
+            print(C_class.good_answer.lower().replace(" ",""))
+            if selectionned_answer != C_class.good_answer.lower().replace(" ",""):
                 print('faux')
             else:
-              citation, answers = get_citation(selectionned_artist)
-              good_answer = answers[0]
-    shuffle(answers)
-    return render_template('rap_citation.html', citation=citation, answers = answers, artist_list = ARTISTS,
-                            selectionned_artist = selectionned_artist)
+              C_class.citation, C_class.answers = get_citation(C_class.selectionned_artist)
+              C_class.good_answer = C_class.answers[0]
+              shuffle(C_class.answers)
+    buttons = C_class.create_buttons(buttons_content=C_class.answers, buttons_value=C_class.answers)
+    print(buttons[0])
+    print(buttons[0]["value"])
+    return render_template('rap_citation.html', C_class=C_class, buttons = buttons, artist_list = ARTISTS)
 
 
-
+# @app.route('/akinator.html/', methods=['GET', 'POST'])
+# def flag_route():
+   

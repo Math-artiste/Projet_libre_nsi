@@ -1,0 +1,4 @@
+< activer l'environnement>
+pip install akinator[async]
+pip install bs4
+pip install requests
