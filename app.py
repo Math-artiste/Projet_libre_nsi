@@ -22,39 +22,40 @@ def quizz_ohm_route() :
   return render_template('quizz_resistance.html', first_color="red", second_color="green", third_color="black", fourth_color="grey")
 
 session = False
-akinator_class = Quizz()
-# akinator_class.create_buttons(buttons_content=["Non", "Probablement pas", "Je ne sais pas", "Probablement", "Oui"],
+A_class = Quizz()
+A_class.session = False
+# A_class.create_buttons(buttons_content=["Non", "Probablement pas", "Je ne sais pas", "Probablement", "Oui"],
 #                        buttons_value=["n","pn","idk","p","y"])
 loop = asyncio.get_event_loop()  # Crée une instance de l'événement loop
 @app.route('/akinator.html/', methods=['GET', 'POST'])
 def akinator_route():
-    global akinator
-    if session != True:
-        session = True
-        akinator_class.akinator_game= Akinator()
-    akinator_class.akinator_game
-    akinator = akinator_class.akinator_game
+    global A_class
+    if A_class.session != True:
+        A_class.session = True
+        A_class.akinator_game= Akinator()
+    A_class.akinator_game
+    akinator = A_class.akinator_game
 
     if request.method == 'POST':
       button_value = request.form['button']
 
       if button_value == "Nouvelle partie":
         loop.run_until_complete(akinator.close())
-        akinator_class.question = loop.run_until_complete(akinator.start_game(language="fr"))
+        A_class.question = loop.run_until_complete(akinator.start_game(language="fr"))
 
       else:
-         akinator_class.question = loop.run_until_complete(akinator.answer(button_value))
+         A_class.question = loop.run_until_complete(akinator.answer(button_value))
 
          if akinator.progression >= 80:
             loop.run_until_complete(akinator.close())
             loop.run_until_complete(akinator.win())
             try:
-                  akinator_class.question = f"C'est {akinator.first_guess['name']} ({akinator.first_guess['description']})!"
+                  A_class.question = f"C'est {akinator.first_guess['name']} ({akinator.first_guess['description']})!"
             except:
-                  akinator_class.question = "ça bug"
+                  A_class.question = "ça bug"
     else:
-      akinator_class.question = loop.run_until_complete(akinator.start_game(language="fr"))
-    return render_template('akinator.html', akinator = akinator_class)
+      A_class.question = loop.run_until_complete(akinator.start_game(language="fr"))
+    return render_template('akinator.html', akinator = A_class)
 
 C_class = Quizz()
 C_class.previous_artist ="Alpha Wann"
