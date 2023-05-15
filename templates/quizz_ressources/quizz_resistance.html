@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html> 
+<head>
+ <link href="{{url_for('static', filename='/quizz_static_ressources/q_resistance.css')}}" rel="stylesheet" type="text/css">
+ <meta charset="utf-8">
+ <title>Quizz résistance</title>
+</head>
+
+<body>
+ <h1>Les résistance !</h1>
+    <img id="main" src="{{url_for('static', filename='/quizz_static_ressources/resistance.png')}}">
+    <div id="lg_bande_1"></div>
+    <style> 
+        #lg_bande_1 {
+            background-color: {{ fourth_color }};
+        }
+    </style>
+    <div id="pt_bande_2"></div>
+    <style> 
+        #pt_bande_2 {
+            background-color: {{third_color}};
+        }
+    </style>
+    <div id="pt_bande_1"></div>
+    <style> 
+        #pt_bande_1 {
+            background-color: {{second_color}};
+        }
+    </style>
+    <div id="lg_bande_2"></div>
+    <style> 
+        #lg_bande_2 {
+            background-color: {{first_color}};
+        }
+    </style>
+</body>
+
+<aside>
+    <div id="aside_bt">
+        <a href="{{url_for('static', filename='/quizz_static_ressources/resistor_color_chart.png')}}">Un peu d'aide ?</a>
+    </div>
+</aside>
+
+<section>
+    <form method="post">
+        <input name="answer" id="answer" type="number" placeholder="Entrez la valeur que la résistance doit avoir en ohm" >
+        <input name="answer_t" id="answer_t" type="number" placeholder="Entrez la tolérance de la résistace" >
+        <input name="hidden_data_1" id="hidden_data_1" type="hidden" value={{ohm_value}}>
+        <input name="hidden_data_2" id="hidden_data_2" type="hidden" value={{tolerance_value}}>
+        <div>
+            <input type="submit" value="Valider" id="valider">
+        </div>
+        
+ </form>
+</section>
+
+</html>
