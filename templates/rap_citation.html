@@ -32,8 +32,12 @@
             <input type="submit" class="btn btn-primary" value="Valider">
         </form>
         <form method="post">
-            {% for button in buttons %}
-            <button type="submit" name="button" class=button["color"] value={{button["value"].replace(' ','') }}>{{button["value"]}}</button>
+            {% for button in C_class.buttons %}
+            {% if button["available"] == True %}
+            <button type="submit" name="button" class='{{button["color"]}}' value={{button['value'].replace(' ','')}}>{{button["value"]}}</button>
+            {% else %}
+            <button type="submit" name="button" class='{{button["color"]}}' value={{button['value'].replace(' ','')}} disabled>{{button["value"]}}</button>
+            {% endif %}
             {% endfor %}
             <!-- <input type="hidden" name="artist" value="{{selectionned_artist}} "> -->
 
