@@ -68,6 +68,8 @@ def citation_route():
     global C_class
 
     if request.method == "GET":
+        C_class.attempt = 0
+        C_class.success = 0
         C_class.citation, C_class.answers = get_citation(C_class.selectionned_artist)
         C_class.good_answer = C_class.answers[0].lower().replace(" ","")
         shuffle(C_class.answers)
@@ -96,25 +98,31 @@ def citation_route():
             shuffle(C_class.answers)
             C_class.buttons = C_class.create_buttons(buttons_content=C_class.answers, buttons_value=C_class.answers)
           elif selectionned_answer != C_class.good_answer:
+              C_class.attempt += 1
               i = 0
               while selectionned_answer != C_class.answers[i].lower().replace(" ",""):
                 print(C_class.answers[i].lower().replace(" ",""))
                 i+=1
               C_class.buttons[i]['color'] = "btn btn-danger"
           else:
+            C_class.attempt += 1
+            C_class.success += 1
             i = 0
             while selectionned_answer != C_class.answers[i].lower().replace(" ",""):
                 i+=1
             C_class.buttons[i]['color'] = "btn btn-success"
             C_class.buttons[-1]["available"] = True
 
-    return render_template('rap_citation.html', C_class=C_class, buttons = C_class.buttons, artist_list = ARTISTS)
+    winrate = f"{str((round(C_class.success/C_class.attempt * 100)))}" if C_class.attempt != 0 else "0"
+    return render_template('rap_citation.html', C_class=C_class, buttons = C_class.buttons, artist_list = ARTISTS, winrate=winrate)
 
 F_class = Quizz()
 @app.route('/flag.html/', methods=['GET', 'POST'])
 def flag_route():
   global F_class
   if request.method == "GET":
+      F_class.attempt = 0
+      F_class.success = 0
       F_class.flag, F_class.answers, F_class.good_answer = get_flag()
       shuffle(F_class.answers)
       print("ANSWERS", F_class.answers)
@@ -123,25 +131,27 @@ def flag_route():
 
   else:
       selectionned_answer = str(request.form["button"]).lower()
-      print(selectionned_answer, F_class.good_answer)
       if selectionned_answer == "next":
         F_class.flag, F_class.answers, F_class.good_answer = get_flag()
         F_class.good_answer = F_class.answers[0].lower().replace(" ","")
         shuffle(F_class.answers)
         F_class.buttons = F_class.create_buttons(buttons_content=F_class.answers, buttons_value=F_class.answers)
       elif selectionned_answer != F_class.good_answer:
+          F_class.attempt += 1
           i = 0
           while selectionned_answer != F_class.answers[i].lower().replace(" ",""):
             print(F_class.answers[i].lower().replace(" ",""))
             i+=1
           F_class.buttons[i]['color'] = "btn btn-danger"
       else:
+        F_class.attempt += 1
+        F_class.success += 1
         i = 0
         while selectionned_answer != F_class.answers[i].lower().replace(" ",""):
             i+=1
         F_class.buttons[i]['color'] = "btn btn-success"
         F_class.buttons[-1]["available"] = True
 
-
-  return render_template('flag.html', F_class=F_class, buttons = F_class.buttons)
+  winrate = f"{str((round(F_class.success/F_class.attempt * 100)))}" if F_class.attempt != 0 else "0"
+  return render_template('flag.html', F_class=F_class, buttons = F_class.buttons, winrate = winrate)
   
