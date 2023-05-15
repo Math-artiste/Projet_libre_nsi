@@ -17,7 +17,7 @@ def index(): # Fonction que Flask exécutera si il reçoit une requête ciblant 
    return render_template('main.html')
 
 @app.route('/quizz_resistance', methods=['GET', 'POST'])
-def quizz_ohm_route():
+def quizz_ohm_route() :
   return render_template('quizz_resistance.html', first_color="red", second_color="green", third_color="black", fourth_color="grey")
 
 session = False
