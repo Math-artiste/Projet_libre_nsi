@@ -18,8 +18,30 @@ def index(): # Fonction que Flask exécutera si il reçoit une requête ciblant 
 
 @app.route('/quizz_resistance', methods=['GET', 'POST'])
 def quizz_ohm_route() :
-  return render_template('quizz_resistance.html', first_color="red", second_color="green", third_color="black", fourth_color="grey")
-
+  if request.method == 'GET':
+    from python.resistance import random_resistance
+    color = random_resistance()
+    return render_template('/quizz_ressources/quizz_resistance.html', first_color = color[0][0], second_color = color[0][1], third_color = color[0][2], fourth_color = color[0][3], ohm_value= color[1][0], tolerance_value=color[1][1]) 
+  else:
+    ohm_answer = request.form["answer"]
+    tolerance_answer = request.form["answer_t"]
+    true_ohm_value = request.form["hidden_data_1"]
+    true_tolerance_value = request.form["hidden_data_2"]
+    if true_ohm_value == ohm_answer and true_tolerance_value == tolerance_answer :
+      return render_template("/quizz_ressources/good_answer.html", final_ohm_value = true_ohm_value, final_tolerance_value= true_tolerance_value)
+    else : 
+      return "error"  
+# @app.post("/try_answer/")
+# def try_answer() :
+#   ohm_answer = request.form["answer"]
+#   tolerance_answer = request.form["answer_t"]
+#   true_ohm_value = request.form["hidden_data_1"]
+#   true_tolerance_value = request.form["hidden_data_2"]
+#   if true_ohm_value == ohm_answer and true_tolerance_value == tolerance_answer :
+#     return render_template("quizz_resistance.html")
+#   else : 
+#      return "error"
+  
 session = False
 akinator_class = Quizz()
 # akinator_class.create_buttons(buttons_content=["Non", "Probablement pas", "Je ne sais pas", "Probablement", "Oui"],

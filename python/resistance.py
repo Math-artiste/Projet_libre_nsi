@@ -29,14 +29,17 @@ def find_color_values(color_list, color_values) :
     for i in range(len(color_list)) :
         for row in color_values :
             if row["color"] == color_list[i] :
-                if i == 0 :
-                    result.append(float(row["first"]))
-                elif i == 1 :
-                    result.append(float(row["second"]))
-                elif i == 2 :
-                    result.append(float(row["multiplier"]))
-                else :
-                    result.append(float(row["tolerance"]))
+                try :
+                    if i == 0 :
+                        result.append(float(row["first"]))
+                    elif i == 1 :
+                        result.append(float(row["second"]))
+                    elif i == 2 :
+                        result.append(float(row["multiplier"]))
+                    else :
+                        result.append(float(row["tolerance"]))
+                except TypeError :
+                    result.append(" ")
     return result
 
 

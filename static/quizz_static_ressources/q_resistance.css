@@ -4,6 +4,7 @@ body {
 
 #main {
     position:absolute;
+    margin-left: 250px;
 }
 
 /* CELUI QUI TOUCHE A CA JE L'EXPLOSE */
@@ -14,7 +15,7 @@ body {
     width  : 20px;
     height : 72px;
     background : white;
-    margin-left: 707px;
+    margin-left: 956px;
     margin-top: 306px;
 }
 #lg_bande_2 {
@@ -22,7 +23,7 @@ body {
     width  : 20px;
     height : 73px;
     background : white;
-    margin-left: 554px;
+    margin-left: 803px;
     margin-top: -67px;
 }
 #pt_bande_1 {
@@ -30,7 +31,7 @@ body {
     width  : 20px;
     height : 60px;
     background : white;
-    margin-left: 655px;
+    margin-left: 905px;
     margin-top: -60px;
 }
 #pt_bande_2 {
@@ -38,18 +39,42 @@ body {
     width  : 20px;
     height : 60px;
     background : white;
-    margin-left: 605px;
+    margin-left: 855px;
     margin-top: -65px;
 }
 
 /* FIN DE L'AVERTISSEMENT */
 
-select {
-    margin-left: 20px;
-    margin-top: 30px;   
-    display: inline-flex;    
+
+#valider {
+    position: relative;
+    margin-top: 150px;
+    margin-left: 800px;
+    height: 100px;
+    width: 200px;
 }
 
-input {
-    margin-left: 20px;
+#answer {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 550px;
+    height: 50px;
+    width: 320px;
+}
+
+#answer_t {
+    height: 50px;
+    width: 220px;
+    margin-left: 50px;
+}
+
+aside {
+
+    vertical-align: bottom;
+    text-align: right;
+
+}
+
+a {
+    color: white;
 }
