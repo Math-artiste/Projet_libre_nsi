@@ -1,0 +1,43 @@
+html,body {
+    height: 100%;
+    margin: auto;
+    padding: auto;
+}
+
+main {
+    height: 100%;
+    width: auto;
+    background-image: url('../static/sport-background.png');
+}
+
+.sport-button img {
+    width: 150px;
+    height: 150px;
+}
+
+#sport-button1 {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+}
+
+#sport-button2 {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+}
+#sport-choice-middle{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+}
+
+#exercise-choice-middle{
+    width: 400px;
+    height: 400px;
+    /* position: absolute; */
+    /* top: 30%;
+    left: 30%; */
+}

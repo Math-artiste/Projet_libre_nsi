@@ -1,8 +1,8 @@
 body {
     margin: 0;
     background-color: #03ac95;
-}
 
+}
 header {
     width: 100%;
     font-size: 3em;
@@ -123,4 +123,3 @@ footer{
     height : 75px; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
     margin : 6px 10px;
 }
-

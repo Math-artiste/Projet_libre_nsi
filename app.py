@@ -4,6 +4,7 @@ from flask import render_template
 from flask import request
 
 import asyncio
+import csv
 
 from akinator.async_aki import Akinator
 from python.rap_citation import get_citation, ARTISTS
@@ -149,7 +150,6 @@ def flag_route():
       shuffle(F_class.answers)
       print("ANSWERS", F_class.answers)
       F_class.buttons = F_class.create_buttons(buttons_content=F_class.answers, buttons_value=F_class.answers)
-      print(F_class.buttons)
 
   else:
       selectionned_answer = str(request.form["button"]).lower()
@@ -177,3 +177,28 @@ def flag_route():
   winrate = f"{str((round(F_class.success/F_class.attempt * 100)))}" if F_class.attempt != 0 else "0"
   return render_template('flag.html', F_class=F_class, buttons = F_class.buttons, winrate = winrate)
   
+line = 1
+@app.route('/sport.html/', methods=['GET', 'POST'])
+def sport_route():
+  global line
+  
+  with open('csv_files/sport/exo_presentation.csv', 'r', newline='') as fichier_csv:
+      lecteur_csv = csv.reader(fichier_csv, delimiter=',')
+      lignes = list(lecteur_csv)  # Stocke toutes les lignes dans une liste
+  if request.method == "GET":
+    pass
+
+  else:
+    selectionned_answer = str(request.form["button"]).lower()
+    if selectionned_answer == "back":
+       line -= 1
+    elif selectionned_answer == "next":
+       line+=1
+    
+    if line >= len(lignes):
+       line = 1
+    if line == 0:
+       line = len(lignes)-1
+
+  return render_template('sport.html', exercise = lignes[line])
+   
