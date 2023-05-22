@@ -1,0 +1,19 @@
+body {
+    background-color: #FF6203;
+}
+
+h1{
+    margin-top: 400px;
+    margin-left: 550px;
+    background-color: orange;
+    width: 900px;
+    font-size: 3em;
+    border: 5px dashed cyan;
+    border-radius : 3px;
+}
+
+a {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: green;
+    font-size: 2em;
+}
