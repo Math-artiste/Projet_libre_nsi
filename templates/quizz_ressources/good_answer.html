@@ -4,11 +4,18 @@
 <head>
  <meta charset="utf-8">
  <title>Result</title>
+ <link href="{{url_for('static', filename='/quizz_static_ressources/good_answer.css')}}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
  <h1>Bravo, vous avez trouver la bonne réponse !</h1>
- <h2>La bonne réponse était bien : {{final_ohm_value}} et {{final_tolerance_value}}</h2>
+ {% if final_tolerance_value == 0 or final_tolerance_value == "" %}
+    <h2>La bonne réponse était bien : {{final_ohm_value}} Ω et O (%)</h2>
+ {%else :%}
+    <h2>La bonne réponse était bien : {{final_ohm_value}} Ω et une tolérance de {{final_tolerance_value}} (%)</h2>
+ {% endif %}
+
+ <a href="quizz_resistance.html">Continuer !</a>
 </body>
 
 </html>
