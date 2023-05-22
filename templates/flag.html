@@ -25,9 +25,11 @@
             <button type="submit" name="button" class='{{button["color"]}}' value={{button['value'].replace(' ','')}} disabled>{{button["value"]}}</button>
             {% endif %}
             {% endfor %}
-
         </form>
-        {{button_value}}
+        <br>
+        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width:{{winrate}}%">{{winrate}}% de winrate sur {{F_class.attempt}} réponses</div>
+          </div>
     </main>
     <footer>
         <a id="git" href="https://github.com/Math-artiste/Projet_nsi">github</a></br>
