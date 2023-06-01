@@ -21,7 +21,6 @@ def calculate_R_value(data) :
     basic_value = float(basic_value)
     basic_value = round(basic_value)
     multiplier = basic_value * data[2]
-    if multiplier
     try :
         tolerance = round(data[3])
     except TypeError :
