@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #03ac95;
+    background:linear-gradient(to right top,#7a04eb,#fe00fe);
 
 }
 header {
@@ -8,7 +8,7 @@ header {
     font-size: 3em;
     text-align: center;
     font-family: Verdana, sans-serif;
-    background-color: #03ac95;
+    background:linear-gradient(to bottom right,#7a04eb,#fe00fe);
 }
 
 nav {
@@ -30,7 +30,7 @@ main {
     min-height: auto;
     /* min-height: 1000%; */
     padding: 1%;
-    background-color: #006f83;
+    background: linear-gradient(#ff124f,#ff00a0);
 }
 
 aside section {
@@ -55,8 +55,10 @@ h1 {
 #main_title {
     margin-left: auto;
     margin-right: auto;
-    border: 2px  solid cyan ;
-    background-color: orange;
+    color: #fe75fe;
+    border: 2px solid  ;
+    border-radius: 7%;
+    background: linear-gradient(#ff124f,#ff00a0);
     width: 600px;
     
 }
@@ -69,7 +71,7 @@ p {
 a {
     transition: 1s;
     text-decoration: none;
-    color: rebeccapurple;
+    color: #fe75fe;
     font-size: 2em;
 }
 
@@ -90,19 +92,21 @@ main article {
 
 footer{
     bottom: 0;
-    border: 2px solid darkblue;
+    border: 2px solid #fe00fe;
     font-size: 20px;
     color: white;
     text-align: center;
 }
 
 #git {
-    color: white;
+    color: fe75fe;
     text-align: center;
+
 }
 
 #git:hover {
-    background-color: green;
+    background-color: #00b3fe;
+    border-radius: 4%;
 }
 
 .appli
@@ -118,8 +122,9 @@ footer{
 .appli li
 {
     border:2px solid white;
-    border-radius: 4%;
+    border-radius: 5%;
     float : left;
     height : 75px; /* à modifier suivant la taille de la police pour centrer le texte dans l'onglet */
     margin : 6px 10px;
+    
 }

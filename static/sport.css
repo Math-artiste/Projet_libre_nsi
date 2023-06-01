@@ -8,36 +8,49 @@ main {
     height: 100%;
     width: auto;
     background-image: url('../static/sport-background.png');
+    background-size: cover;
 }
 
 .sport-button img {
     width: 150px;
     height: 150px;
+    
 }
 
 #sport-button1 {
     position: absolute;
     top: 50%;
-    left: 15%;
+    left: 25%;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
 }
 
 #sport-button2 {
     position: absolute;
     top: 50%;
     left: 65%;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
 }
 #sport-choice-middle{
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    top: 30%;
-    left: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
 }
 
 #exercise-choice-middle{
     width: 400px;
-    height: 400px;
-    /* position: absolute; */
-    /* top: 30%;
-    left: 30%; */
+    height: 447px;
+    margin: 0;
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
 }
