@@ -1,13 +1,13 @@
 color,first,second,multiplier,tolerance
 black,0,0,1,1
 brown,1,1,10,2
-red,2,2,100
+red,2,2,100,null
 blue,6,6,1000000,0.25
-yellow,4,4,10000
+yellow,4,4,10000,null
 green,5,5,100000,0.5
 grey,8,8,100000000,0.05
 purple,7,7,10000000,0.10
-orange,3,3,1000
-white,9,9,1000000000
+orange,3,3,1000,null
+white,9,9,1000000000,null
 gold,0,0,0.1,5
 silver,0,0,0.01,10

@@ -17,9 +17,15 @@ def random_resistance() :
 
 
 def calculate_R_value(data) :
-    basic_value = round(data[0] + data[1])
-    multiplier = round(basic_value * data[2])
-    tolerance = data[3]
+    basic_value = data[0] + data[1]
+    basic_value = float(basic_value)
+    basic_value = round(basic_value)
+    multiplier = basic_value * data[2]
+    if multiplier
+    try :
+        tolerance = round(data[3])
+    except TypeError :
+        tolerance = "null"
     result = [multiplier, tolerance]
     return result
 
@@ -29,17 +35,17 @@ def find_color_values(color_list, color_values) :
     for i in range(len(color_list)) :
         for row in color_values :
             if row["color"] == color_list[i] :
-                try :
-                    if i == 0 :
-                        result.append(float(row["first"]))
-                    elif i == 1 :
-                        result.append(float(row["second"]))
-                    elif i == 2 :
-                        result.append(float(row["multiplier"]))
-                    else :
+                if i == 0 :
+                    result.append(row["first"])
+                elif i == 1 :
+                    result.append(row["second"])
+                elif i == 2 :
+                    result.append(float(row["multiplier"]))
+                else :
+                    try :
                         result.append(float(row["tolerance"]))
-                except TypeError :
-                    result.append(" ")
+                    except ValueError :
+                        result.append(row["tolerance"])
     return result
 
 
