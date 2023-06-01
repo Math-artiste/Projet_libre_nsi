@@ -20,13 +20,13 @@ def index(): # Fonction que Flask exécutera si il reçoit une requête ciblant 
 
 @app.route('/quizz_resistance.html', methods=['GET', 'POST'])
 def quizz_ohm_route() :
-  Score = 0
   if request.method == 'GET':
     from python.resistance import random_resistance
     color = random_resistance()
+    Score = 0
     return render_template('/quizz_ressources/quizz_resistance.html', first_color = color[0][0], second_color = color[0][1], third_color = color[0][2], fourth_color = color[0][3], ohm_value= color[1][0], tolerance_value=color[1][1], score = Score) 
   else:
-    Score += 1
+
     ohm_answer = request.form["answer_ohm"]
     tolerance_answer = request.form["answer_tolerance"]
     true_ohm_value = request.form["hidden_data_1"]
