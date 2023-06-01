@@ -9,7 +9,7 @@
 <body>
  <h1>Les résistance !</h1>
  <div>
-    <p>Score : {{ohm_value}}, {{tolerance_value}}</p>
+    <p>Score : {{score}}</p>
  </div>
     <img id="main" src="{{url_for('static', filename='/quizz_static_ressources/resistance.png')}}">
     <div id="lg_bande_1"></div>
@@ -21,13 +21,13 @@
     <div id="pt_bande_2"></div>
     <style> 
         #pt_bande_2 {
-            background-color: {{third_color}};
+            background-color: {{second_color}};
         }
     </style>
     <div id="pt_bande_1"></div>
     <style> 
         #pt_bande_1 {
-            background-color: {{second_color}};
+            background-color: {{third_color}};
         }
     </style>
     <div id="lg_bande_2"></div>
@@ -40,7 +40,7 @@
 
 <aside>
     <div id="aside_bt">
-        <a href="{{url_for('static', filename='/quizz_static_ressources/resistor_color_chart.png')}}">Un peu d'aide ?</a>
+        <a href="help.html">Un peu d'aide ?</a>
     </div>
 </aside>
 
@@ -48,7 +48,7 @@
     <form method="post" id="answer_form">
 
         <input name="answer_ohm" id="answer_ohm" type="number" placeholder="Valeur resistance (ohm)">
-        <input name="answer_tolerance" id="answer_tolerance" type="number" placeholder="Valeur tolerance">
+        <input name="answer_tolerance" id="answer_tolerance" placeholder="Valeur tolerance">
     
         <div>
             <input name="hidden_data_1" id="hidden_data_1" type="hidden" value={{ohm_value}}>

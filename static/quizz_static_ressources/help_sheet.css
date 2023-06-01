@@ -1,0 +1,21 @@
+body {
+    background:linear-gradient(to right top,#7a04eb,#fe00fe);
+}
+
+h1{
+    margin-left: 800px;
+    background-color: orange;
+    width: 200px;
+    font-size: 3em;
+    border: 5px dashed cyan;
+    border-radius : 3px;
+}
+
+li {
+    font-size: 1.5em;  
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+img {
+    margin-left: 650px;
+}

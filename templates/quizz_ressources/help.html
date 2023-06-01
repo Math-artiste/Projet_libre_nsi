@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <link href="{{url_for('static', filename='/quizz_static_ressources/help_sheet.css')}}" rel="stylesheet" type="text/css">
+ <title>Aide pour résoudre le quizz</title>
+</head>
+
+<body>
+ <h1>A retenir</h1>
+ <ul>
+    <li>Le tableau ci-dessous contient toutes les valeurs nécessaires pour le quizz. Attention, il faut prendre les 2 premières valeurs des bandes a part, ex : 1 + 6 = 16 !</li>
+    <li>La réponse en ohm a donner doit etre arondi !</li>
+    <li>Les couleurs n'yant pas de résistance ont a la place une valeur 'null', il faut donc rentrer 'null' pour valider la réponse !</li>
+ </ul>
+ <img id="main" src="{{url_for('static', filename='/quizz_static_ressources/resistor_color_chart.png')}}">
+</body>
+
+</html>

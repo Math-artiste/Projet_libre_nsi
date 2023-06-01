@@ -20,7 +20,7 @@ def calculate_R_value(data) :
     basic_value = data[0] + data[1]
     basic_value = float(basic_value)
     basic_value = round(basic_value)
-    multiplier = basic_value * data[2]
+    multiplier = round(basic_value * data[2])
     try :
         tolerance = round(data[3])
     except TypeError :
@@ -46,6 +46,14 @@ def find_color_values(color_list, color_values) :
                     except ValueError :
                         result.append(row["tolerance"])
     return result
+
+
+import csv 
+with open("csv_files\color_resistance.csv", "r") as f :
+    data = csv.DictReader(f)
+    r = []
+    for row in data :
+        r.append(row)
 
 
 print(random_resistance())

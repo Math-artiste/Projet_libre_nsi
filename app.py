@@ -26,15 +26,19 @@ def quizz_ohm_route() :
     color = random_resistance()
     return render_template('/quizz_ressources/quizz_resistance.html', first_color = color[0][0], second_color = color[0][1], third_color = color[0][2], fourth_color = color[0][3], ohm_value= color[1][0], tolerance_value=color[1][1], score = Score) 
   else:
+    Score += 1
     ohm_answer = request.form["answer_ohm"]
     tolerance_answer = request.form["answer_tolerance"]
     true_ohm_value = request.form["hidden_data_1"]
     true_tolerance_value = request.form["hidden_data_2"]
     if true_ohm_value == ohm_answer and true_tolerance_value == tolerance_answer :
-      Score += 1
       return render_template("/quizz_ressources/good_answer.html", final_ohm_value = true_ohm_value, final_tolerance_value= true_tolerance_value)
     else : 
       return render_template("/quizz_ressources/wrong_answer.html")  
+
+@app.route('/help.html')
+def need_help() :
+   return render_template("/quizz_ressources/help.html")
 # @app.post("/try_answer/")
 # def try_answer() :
 #   ohm_answer = request.form["answer"]
